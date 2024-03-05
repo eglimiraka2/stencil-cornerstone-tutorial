@@ -1,10 +1,15 @@
 __webpack_public_path__ = window.__webpack_public_path__; // eslint-disable-line
 
 import Global from './theme/global';
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CouponDrawer from './components/CouponDrawer';
+import BulkVariantForm from './bulk-variant-form/bulk-variant-form';
 const getAccount = () => import('./theme/account');
 const getLogin = () => import('./theme/auth');
 const noop = null;
+
+
 
 const pageClasses = {
     account_orderstatus: getAccount,
@@ -32,7 +37,7 @@ const pageClasses = {
     brand: () => import('./theme/brand'),
     brands: noop,
     cart: () => import('./theme/cart'),
-    category: () => import('./theme/category'),
+    category: () => import('./theme/custom/react-demo'),
     compare: () => import('./theme/compare'),
     page_contact_form: () => import('./theme/contact-us'),
     error: noop,
@@ -52,7 +57,6 @@ const pageClasses = {
     wishlists: () => import('./theme/wishlist'),
 };
 
-const customClasses = {};
 
 /**
  * This function gets added to the global window and then called
@@ -95,4 +99,11 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
             });
         },
     };
+};
+ReactDOM.render(<CouponDrawer />, document.querySelector('#coupondrawer'));
+window.initBulkVariantForm = function initBulkVariantForm(id) {
+    ReactDOM.render(
+        React.createElement(BulkVariantForm, id, null),
+        document.getElementById('bulk-variant-form')
+    );
 };

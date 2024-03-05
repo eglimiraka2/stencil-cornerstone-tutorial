@@ -1,0 +1,14 @@
+.cg-banners {
+    background-color: stencilColor("cg-background-primary");
+    color: stencilColor("cg-banner-text");
+    text-align: center;
+    padding: 3px;
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: color("whites", "bright");
+    }
+ }

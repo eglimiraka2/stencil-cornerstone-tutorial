@@ -18,6 +18,21 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-react'],
+                    },
+                },
+            },
+            {
+                test: /\.css/,
+                loader: ['style-loader', 'css-loader'],
+            },
+
+            {
                 test: /\.js$/,
                 include: /(assets\/js|assets\\js|stencil-utils)/,
                 use: {
@@ -26,23 +41,26 @@ module.exports = {
                         plugins: [
                             '@babel/plugin-syntax-dynamic-import', // add support for dynamic imports (used in app.js)
                             'lodash', // Tree-shake lodash
+                            'transform-object-assign',
+
                         ],
                         presets: [
                             ['@babel/preset-env', {
-                                loose: true, // Enable "loose" transformations for any plugins in this preset that allow them
-                                modules: false, // Don't transform modules; needed for tree-shaking
-                                useBuiltIns: 'entry',
-                                corejs: '^3.6.5',
+                                loose: true,
+                                modules: false,
+                                useBuiltIns: 'usage',
+                                targets: '> 1%, last 2 versions, Firefox ESR',
                             }],
+                            ['@babel/preset-react'],
                         ],
                     },
                 },
             },
             {
-                test: require.resolve("jquery"),
-                loader: "expose-loader",
+                test: require.resolve('jquery'),
+                loader: 'expose-loader',
                 options: {
-                  exposes: ["$"],
+                    exposes: ['$'],
                 },
             },
         ],
@@ -75,7 +93,7 @@ module.exports = {
         }),
     ],
     resolve: {
-        fallback:  { "url": require.resolve("url/") },
+        fallback: { url: require.resolve('url/') },
         alias: {
             jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
             jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
@@ -83,5 +101,7 @@ module.exports = {
             'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
             'svg-injector': path.resolve(__dirname, 'node_modules/svg-injector/dist/svg-injector.min.js'),
         },
+        extensions: [".js", ".jsx"]
+
     },
 };

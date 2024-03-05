@@ -9,6 +9,8 @@
 // 1. Import Citadel's toolkit for use.
 //
 // -----------------------------------------------------------------------------
+@import "custom";
+
 
 @import "../../node_modules/@bigcommerce/citadel/dist/tools/toolkit"; // 1
 @import "tools/tools";

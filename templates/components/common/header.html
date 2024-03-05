@@ -1,3 +1,7 @@
+<div class="navPages-container" id="menu" data-menu>
+    {{> components/common/navigation-menu}}
+
+</div>
 <a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
 {{#if banners.top}}
 <div class="banners" data-banner-location="top">
@@ -9,6 +13,9 @@
     </div>
     {{/each}}
 </div>
+{{/if}}
+{{#if customer.customer_group_id "==" theme_settings.cg_banner_id_num}}
+    {{> components/common/customer-group-special}}
 {{/if}}
 <header class="header" role="banner">
     <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
@@ -25,10 +32,10 @@
             {{> components/common/store-logo}}
         </div>
     {{/if}}
-    <div class="navPages-container" id="menu" data-menu>
-        {{> components/common/navigation-menu}}
-    </div>
+    
     {{{region name="header_navigation_bottom--global"}}}
 </header>
+
+{{{region name="header_navigation_bottom--global"}}}
 {{{region name="header_bottom--global"}}}
 {{{region name="header_bottom"}}}
