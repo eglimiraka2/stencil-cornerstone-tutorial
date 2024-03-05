@@ -101,9 +101,3 @@ window.stencilBootstrap = function stencilBootstrap(pageType, contextJSON = null
     };
 };
 ReactDOM.render(<CouponDrawer />, document.querySelector('#coupondrawer'));
-window.initBulkVariantForm = function initBulkVariantForm(id) {
-    ReactDOM.render(
-        React.createElement(BulkVariantForm, id, null),
-        document.getElementById('bulk-variant-form')
-    );
-};
